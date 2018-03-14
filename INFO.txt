@@ -1,0 +1,26 @@
+Google API Key 
+AIzaSyBRfRhjq-ErrYSoYRNjpoCdQ5Y28_kAbHE
+
+
+Private user book shelves:
+GET https://www.googleapis.com/books/v1/mylibrary/bookshelves?key=yourAPIKey
+Authorization: /* auth token here */
+
+ADDING Book to book shelves:
+https://www.googleapis.com/books/v1/mylibrary/bookshelves/shelf/addVolume
+
+POST https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/addVolume?volumeId=NRWlitmahXkC&key=yourAPIKey
+Authorization: /* auth token here */
+Content-Type: application/json
+Content-Length: CONTENT_LENGTH
+
+Removing book shevles:
+POST https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/removeVolume?volumeId=NRWlitmahXkC&key=yourAPIKey
+Authorization: /* auth token here */
+Content-Type: application/json
+Content-Length: CONTENT_LENGTH	
+
+
+BOOOK BY ISBN:
+https://www.googleapis.com/books/v1/volumes?q=isbn:9789385990977
+https://www.googleapis.com/books/v1/volumes?q=isbn:0735619670

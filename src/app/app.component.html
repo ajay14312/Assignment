@@ -1,0 +1,48 @@
+<header>
+  <div>
+    <input type="text" placeholder="Search by" [(ngModel)]="searchPhrase" />
+    <button type="button" (click)="search(searchPhrase)" [disabled]="searchPhrase === ''">Search</button>
+
+    <button type="button" (click)="clear()" [disabled]="searchPhrase === ''">Clear</button>
+  </div>
+
+  <br/>
+  
+	<div>
+		Sort by:
+		<span class="link active" (click)="sortBy('name')">name</span> |
+		<span class="link" (click)="sortBy('price')">price</span>
+  </div>
+  <div>
+      <button type="button" (click)="addProduct('add')">Add</button>
+  </div>
+</header>
+
+<br/>
+
+<section *ngIf="!isFormAppeared">
+  <div><input type="checkbox" (change)="selectAll()" [checked]="isAllSelected"/> Select all <button [hidden]="!isAllSelected" (click)="removeAll()">removeAll</button></div>
+  <br/>
+  <div *ngFor="let product of products" [hidden]="showLoad">
+    <input type="checkbox" (change)="selectChange(product)" [checked]="product.checked"/>
+    {{ product.name }}
+    <b>{{ product.price }}$</b>
+    <button [hidden]="!product.checked || isAllSelected" (click)="removeProduct(product)">remove</button>
+    <button [hidden]="!product.checked || isAllSelected" (click)="editProduct(product, 'edit')">Edit</button>
+  </div>
+
+  <div *ngIf="showLoad">Loading...</div>
+</section>
+
+<form *ngIf="isFormAppeared || showAddProductForm" (ngSubmit)="onSubmit(productObj)" #editForm="ngForm">
+  <div class="form-group">
+    <label for="title">Name</label>
+    <input type="text" class="form-control" required name="name" [(ngModel)]="productObj.name">
+  </div>
+  <div class="form-group">
+    <label for="author">Price</label>
+    <input type="text" class="form-control" required name="price" [(ngModel)]="productObj.price">
+  </div>
+  <button class="btn btn-default" (click)="cancelEdit()">Cancel</button>
+  <button type="submit" class="btn btn-default">Submit</button>
+ </form>

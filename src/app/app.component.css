@@ -1,0 +1,17 @@
+body {
+    font-family: Lato;
+  }
+  
+  .active {
+    font-weight: bold;
+  }
+  
+  .link {
+    color: #3312cc;
+    text-decoration: underline;
+  }
+  
+  .link:hover {
+    color: #3312cc;
+    cursor: pointer;
+  }
